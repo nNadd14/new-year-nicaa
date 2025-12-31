@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Bubblegum Sans', cursive;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #FF1493, #C8A2C8), url('your-background.jpg') no-repeat center/cover; /* Ganti 'your-background.jpg' dengan path gambar background Anda */
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .card-container {
+            width: 90%;
+            max-width: 600px;
+            height: 80vh;
+            background: #FFFFFF;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .envelope {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #C8A2C8, #FF1493);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: transform 1s ease;
+        }
+
+        .envelope.open {
+            transform: translateY(-100%);
+        }
+
+        .envelope-text {
+            font-size: 2rem;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .scenes {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scene {
+            display: none;
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .scene.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .scene h1, .scene h2 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #FF1493;
+        }
+
+        .scene p {
+            font-size: 1.5rem;
+            color: #C8A2C8;
+        }
+
+        .text-input {
+            width: 80%;
+            height: 200px;
+            border: 2px solid #FF1493;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.2rem;
+            background: #FFFFFF;
+            color: #C8A2C8;
+            resize: none;
+        }
+
+        .uploaded-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-shadow: 0 0 20px #FF1493, 0 0 40px #C8A2C8, 0 0 60px #FF1493; /* Efek neon light pink dan purple */
+            animation: neonGlow 2s ease-in-out infinite alternate; /* Animasi glow */
+        }
+
+        @keyframes neonGlow {
+            from {
+                box-shadow: 0 0 20px #FF1493, 0 0 40px #C8A2C8, 0 0 60px #FF1493;
+            }
+            to {
+                box-shadow: 0 0 30px #FF1493, 0 0 60px #C8A2C8, 0 0 90px #FF1493;
+            }
+        }
+
+        .text-below-image {
+            width: 80%;
+            height: 100px;
+            border: 2px solid #FF1493;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.2rem;
+            background: #FFFFFF;
+            color: #C8A2C8;
+            resize: none;
+        }
+
+        audio {
+            margin: 10px 0;
+            display: none; /* Sembunyikan controls audio */
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #C8A2C8;
+        }
+
+        button {
+            background: #FF1493;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #C8A2C8;
+        }
+
+        .stickers {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+        }
+
+        .sticker {
+            margin: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="envelope" id="envelope">
+            <div class="envelope-text">
+                💌 Klik untuk Membuka Amplop! 💌<br>
+                Selamat Tahun Baru!
+            </div>
+        </div>
+        <div class="scenes">
+            <div class="scene active" id="scene1">
+                <h1>🎉 Happy New Year 2026 🎉</h1>
+                <p>buatt nicaaa yeyyyyy, jangan nangis lohh yaaa hehehee....</p>
+                <div class="stickers">
+                    <span class="sticker">🎊</span>
+                    <span class="sticker">💖</span>
+                    <span class="sticker">🌟</span>
+                </div>
+            </div>
+            <div class="scene" id="scene2">
+                <h2>nicaaa ku yang hebattt...</h2>
+                <textarea class="text-input" readonly>haii haii haiii 👋🏻👋🏻, halooo gimana gimanaa?? pasti banyak gebrakan 2025 yang udah kamu lewatin dengan hebatt yaaa hahahaa...
+
+Selamat tahun baru yaaa, Khairunnisa Syafa Azzahra ku yang cantikk, imupp dan baik hatiii
+
+Aku cuma mau bilang kalo aku bangga banget sama kamu. Bangga sama semua perjuangan yang kamu jalanin sampe akhirnya bisa berdiri di titik akhir tahun ini. Aku tau ga semua hari kamu gampang, ga semua proses kamu ceritain, tapi kamu tetep jalan, tetep kuat, tetep jadi kamu yang aku kenal sekarang. Dan jujur aja, ngeliat kamu bisa sejauh ini bikin aku makin yakin kalo kamu orang yang bener bener luar biasa hebatt yeyy banggaa sama nicaa akuuu.
+
+Lucunya, di antara semua capek, jatuh, dan usaha yang aku jalanin sepanjang tahun ini, kamu malah dateng di hidup aku di akhir tahun 2025 ini, Di waktu yang ga aku sangka, ga aku rencanain, tapi rasanya pas. Kaya… semua hal yang aku lewatin selama setahun ini ternyata nganterin aku ke kamu. Aku ngerasa kamu itu hadiah. Hadiah dari semua sabar yang aku kumpulin, dari semua pelajaran yang bikin aku tumbuh, dari semua hal yang dulu aku kira sia-sia.
+
+Sejak ada kamu, hal-hal kecil jadi kerasa lebih berarti di aku...,  bahkan hari-hari yang tadinya biasa aja jadi punya rasa kayaknya sekaranh hahaha. Aku ngerasa ditemenin, dipilih, dan dihargain dengan cara yang sederhana tapi dalem. Kamu dateng bukan buat ngebenerin hidup aku, tapi nemenin aku ngejalaninnya, dan itu jauh lebih berharga.
+
+Tahun ini boleh selesai, tapi rasa syukur aku ke kamu kebawa sampe jauh ke depan. Karena awal 2026 ini, aku ga jalan sendirian. Aku jalan bareng kamu. Dengan semua rencana, mimpi, tawa, dramatic, capek, dan bahagia yang bakal kita lewatin berdua. Aku ga janji semuanya bakal selalu gampang, tapi aku janji aku serius. Aku milih kamu, dan aku mau terus milih kamu.
+
+Makasih ya udah hadir. Makasih udah jadi hadiah paling setimpal paling berharga diakhir tahun ini.
+Semoga tahun baru kali ini lebih ramah ke kita, dan semoga aku masih bisa genggam tangan kamu sampe sejauh mungkin.
+
+Selamat tahun baru, Khairunnisa Syafa Azzahra.
+
+Aku sayang kamu, lebih dari yang bisa aku jelasin pake kata-kata.</textarea>
+                <audio id="audioPlayer" src="30.mp3" preload="auto"></audio> <!-- Ganti 'your-music.mp3' dengan path file musik Anda, preload untuk otomatis -->
+                <div class="stickers">
+                    <span class="sticker">🎈</span>
+                    <span class="sticker">🥳</span>
+                    <span class="sticker">💕</span>
+                </div>
+            </div>
+            <div class="scene" id="scene3">
+                <h2>Hadiah terbaik ku...</h2>
+                <img id="uploadedImage" src="nicaaa.jpg" class="uploaded-image"> <!-- Ganti 'your-image.jpg' dengan path gambar Anda -->
+                <textarea class="text-below-image" readonly>haii lagii👋🏻👋🏻, hehehe... kali ini aku mau ngenalin nihhh hadiah terbaik akuu di tahun 2025 iniii, banyak banget pelajaran dan perjuangan di tahun 2025 inii yang terbilang sangat amat cukup melelahkan yaaa hahaha, nahh aku pengen ngenalin nihhh hadiah yang aku dapetin dari perjuangan aku selama 2025 iniii yeyyyy, ini diaaaa namanyaa Khairunnisa Syafa Azzahra nihhh, diaa hadiah paling terbaik yang aku dapetin selama perjuangan aku di tahun ini dan sebelumnyaa, dia orangnya cantik, imup, baik hati dan juga lemah lembut nihhh, dia juga cengeng dan sentimental, jadiii... aku harap di tahun 2026 inii jangan bikin dia nangis sama hal hal negatif yang menimpa dia yaaa, aku mohon bangett 2026 pliss baik baik sama nicaaa yaaa, dan semogaa aku bisa mulai cerita sama diaa sekarang dan seterusnya bahkan semoga selamanyaaa hehehee</textarea>
+                <div class="stickers">
+                    <span class="sticker">❤️</span>
+                    <span class="sticker">🎁</span>
+                    <span class="sticker">😊</span>
+                </div>
+            </div>
+            <div class="scene" id="scene4">
+                <h1>maaciwww🙏</h1>
+                <p>Makasihh banyak yaaa udah mau nemenin aku buat nutup akhir tahun 2025 iniii, semogaa di cerita aku ditahun berikutnya masih banyak nama kamunya yaaa hehehe....</p>
+                <div class="stickers">
+                    <span class="sticker">🎇</span>
+                    <span class="sticker">💫</span>
+                    <span class="sticker">🌈</span>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button id="prevBtn" onclick="prevScene()">Sebelumnya</button>
+            <button id="nextBtn" onclick="nextScene()">Selanjutnya</button>
+        </div>
+    </div>
+
+    <script>
+        let currentScene = 1;
+        const totalScenes = 4;
+        const envelope = document.getElementById('envelope');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.add('open');
+            // Mulai musik saat animasi amplop terbuka
+            audioPlayer.play().catch(e => console.log('Audio play failed:', e));
+        });
+
+        function showScene(sceneNum) {
+            document.querySelectorAll('.scene').forEach(scene => scene.classList.remove('active'));
+            document.getElementById(`scene${sceneNum}`).classList.add('active');
+        }
+
+        function nextScene() {
+            if (currentScene < totalScenes) {
+                currentScene++;
+                showScene(currentScene);
+            }
+        }
+
+        function prevScene() {
+            if (currentScene > 1) {
+                currentScene--;
+                showScene(currentScene);
+            }
+        }
+    </script>
+</body>
+</html>
